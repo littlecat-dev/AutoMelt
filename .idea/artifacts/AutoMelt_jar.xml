@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="AutoMelt:jar">
-    <output-path>$PROJECT_DIR$/../../../../Spigots/1.12.2/plugins</output-path>
-    <root id="archive" name="AutoMelt.jar">
-      <element id="module-output" name="AutoMelt" />
-    </root>
-  </artifact>
-</component>
