@@ -2,9 +2,7 @@ package me.swat.automelt;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.ExperienceOrb;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -23,11 +21,9 @@ public class AutoMeltListener implements Listener {
 
     @EventHandler
     public void onBreak(BlockBreakEvent e) {
-        Block block = e.getBlock();
-        Player player = e.getPlayer();
-        String itemName = player.getInventory().getItemInMainHand().getItemMeta().getDisplayName();
+        String itemName = e.getPlayer().getInventory().getItemInMainHand().getItemMeta().getDisplayName();
         if (itemName.equals("AutoMelter")) {
-            if (block.breakNaturally()) {
+            if (e.getBlock().breakNaturally()) {
                 ItemStack item = e.getBlock().getDrops().stream().findAny().orElse(null);
                 if (item == null)
                     return;
@@ -42,10 +38,8 @@ public class AutoMeltListener implements Listener {
                             int amount = item.getAmount();
                             item = frec.getResult();
                             item.setAmount(amount);
-
                             e.getBlock().getWorld().spawn(e.getBlock().getLocation(), ExperienceOrb.class)
                                     .setExperience(2);
-                            ;
                             break;
                         }
                     }
